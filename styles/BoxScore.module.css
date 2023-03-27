@@ -1,0 +1,188 @@
+.pageContainer{
+    --backgroundColor: rgba(249, 249, 249);
+    --boxShadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --darkerBackground: lightgray;
+    --lighterBackground: white;
+    --onPrimary: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1em;
+    background-color: var(--backgroundColor);
+    min-height: 100vh;
+}
+
+.boxScore{
+    --row-height: 2em;
+    width: min-content;
+    max-width: 96vw;
+    border-radius: 0.5em;
+    box-shadow: var(--boxShadow);
+}
+
+.mlb{
+    --period-width: 2em;
+
+}
+
+.nba{
+    --period-width: 3em;
+}
+
+.gameInfo{
+    display: flex;
+}
+
+.gameInfo > *{
+    padding-bottom: 0.125em;
+}
+
+.teams{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: var(--row-height);
+    place-items: center;
+    border-top-left-radius: 0.5em;
+    flex-shrink: 0;
+}
+
+.teams .team{
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.gameDetails{
+    background-color: var(--lighterBackground);
+    color: var(--onPrimary);
+    flex-shrink: 1;
+    overflow-x: auto;
+    overflow-y: hidden
+}
+
+.topRow{
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row{
+    height: var(--row-height);
+}
+
+:where(.periods, .runs) > *{
+    width: var(--period-width);
+    min-width: var(--period-width);
+    text-align: center;
+}
+
+:where(.periods, .runs) > *:first-child, :where(.periods, .runs) > *:last-child{
+    width: calc(var(--period-width) + 0.5em);
+    min-width: calc(var(--period-width) + 0.5em);
+}
+
+:where(.periods, .runs) > *:first-child{
+    padding-left: 0.5em;
+}
+
+:where(.periods, .runs) > *:last-child{
+    padding-right: 0.5em;
+}
+
+.summary{
+    display: grid;
+    grid-template-rows: var(--row-height);
+    place-items: center;
+    border-top-right-radius: 0.5em;
+    flex-shrink: 0;
+}
+
+.summary *{
+    font-weight: bold;
+}
+
+.mlb .summary{
+    grid-template-columns: 3em 1.5em 3em;
+}
+
+.nba .summary{
+    grid-template-columns: 3em;
+}
+
+.teams, .summary{
+    background-color: var(--darkerBackground);
+    color: var(--onPrimary)
+}
+
+.details{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    border-top: 1px solid gray;
+}
+
+.details .team{
+    flex: 1;
+    text-align: center;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.details .team:first-child{
+    border-bottom-left-radius: 0.5em;
+}
+
+.details .team:last-child{
+    border-bottom-right-radius: 0.5em;
+}
+
+.periods, .runs{
+    display: flex;
+    align-items: center;
+}
+
+.teams{
+    background-color: var(--darkerBackground);
+    color: var(--onPrimary)
+}
+
+.inning{
+    text-align: center;
+    padding-left: 1em;
+    padding-right: 1em;
+    background-color: var(--lighterBackground);
+    color: var(--onPrimary);
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 500px){
+    .mlb.boxScore{
+        --period-width: 1.5em;
+    }
+
+    .mlb .summary{
+        grid-template-columns: 2em 1em 2em;
+    }
+}
+
+@media (prefers-color-scheme: dark){
+    .pageContainer{
+        color-scheme: dark;
+        --backgroundColor: #121212;
+        --boxShadow: none;
+        --darkerBackground: black;
+        --lighterBackground: #2d2d2d;
+        --onPrimary: white;
+    }
+
+}
